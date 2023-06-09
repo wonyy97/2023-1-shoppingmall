@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+
 
 @Service
 public class ProductService {
@@ -37,11 +40,28 @@ public class ProductService {
         System.out.println("savedFileNm : " + savedFileNm);
         int result = mapper.insProduct(entity);
 
+        //pk값 얻었다
         System.out.println("result : " + result);
         System.out.println("pk : " + entity.getIproduct());
-        //
 
-        return 0;
+        //폴더 생성
+        String targetDic = String.format("%s/product/%d", fileDir, entity.getIproduct());
+        File fileTargetDir = new File(targetDic);
+
+        if (!fileTargetDir.exists()) {
+            fileTargetDir.mkdirs(); //파일 만들어주는 메소드 mkdirs
+        }
+
+        //이미지를 해당 폴더로 이동 시키기
+        File fileTarget = new File(targetDic + "/" + savedFileNm);
+
+        try {
+            img.transferTo(fileTarget);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return 1;
     }
 
 }
