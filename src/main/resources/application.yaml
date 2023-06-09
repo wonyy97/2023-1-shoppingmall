@@ -21,4 +21,4 @@ springdoc:
     path: /swagger.html
 
 file:
-  dir: D:/downlaod/shoppingmall/
+  dir: D:/download/shoppingmall/
