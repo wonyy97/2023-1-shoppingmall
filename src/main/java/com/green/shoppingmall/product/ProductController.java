@@ -1,6 +1,5 @@
 package com.green.shoppingmall.product;
 
-import com.green.shoppingmall.product.model.ProductEntity;
 import com.green.shoppingmall.product.model.ProductInsDto;
 import com.green.shoppingmall.product.model.SingSangSong;
 import org.springframework.beans.factory.annotation.Autowired;
