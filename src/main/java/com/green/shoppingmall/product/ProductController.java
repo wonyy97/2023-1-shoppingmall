@@ -1,14 +1,14 @@
 package com.green.shoppingmall.product;
 
+import com.green.shoppingmall.product.model.ProductEntity;
 import com.green.shoppingmall.product.model.ProductInsDto;
 import com.green.shoppingmall.product.model.SingSangSong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -26,6 +26,12 @@ public class ProductController {
     public int insProduct(@RequestPart MultipartFile img, @RequestPart ProductInsDto dto) { //@RequestPart 파일 업로드 할 때 사용
 
         return service.insProduct(img, dto);
+    }
+
+
+    @PostMapping(value="/{iproduct}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public Long insProductPics(@PathVariable Long iproduct, @RequestPart List<MultipartFile> pics) throws Exception{
+        return service.insProductPics(iproduct, pics);
     }
 
     //연습했음

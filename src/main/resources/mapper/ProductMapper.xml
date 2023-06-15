@@ -14,6 +14,14 @@
         , brand = #{brand}
     </insert>
 
+    <insert id="insProductPic">
+        INSERT INTO t_product_pic
+        ( iproduct, pic)
+        VALUES
+        <foreach collection="list" item="item" open="(" separator="), (" close=")">
+            #{item.iproduct}, #{item.pic}
+        </foreach>
+    </insert>
 
 
 
