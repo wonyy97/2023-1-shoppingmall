@@ -4,6 +4,7 @@ import com.green.shoppingmall.product.model.ProductEntity;
 import com.green.shoppingmall.product.model.ProductInsDto;
 import com.green.shoppingmall.product.model.ProductPicEntity;
 import com.green.shoppingmall.utils.FileUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
     private final ProductMapper mapper;
@@ -23,10 +25,6 @@ public class ProductService {
     @Value("${file.dir}")
     private String fileDir;
 
-    @Autowired
-    public ProductService(ProductMapper mapper) {
-        this.mapper = mapper;
-    }
 
     public int insProduct(MultipartFile img, ProductInsDto dto) {
         ProductEntity entity = new ProductEntity();
