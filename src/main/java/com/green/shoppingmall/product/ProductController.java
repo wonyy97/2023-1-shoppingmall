@@ -2,6 +2,7 @@ package com.green.shoppingmall.product;
 
 import com.green.shoppingmall.product.model.ProductEntity;
 import com.green.shoppingmall.product.model.ProductInsDto;
+import com.green.shoppingmall.product.model.ProductVo;
 import com.green.shoppingmall.product.model.SingSangSong;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class ProductController {
     public Long insProductPics(@PathVariable Long iproduct, @RequestPart List<MultipartFile> pics) throws Exception{
         return service.insProductPics(iproduct, pics);
     }
+
+    @GetMapping
+    public List<ProductVo> getProduct() {
+        return service.selProduct();
+    }
+
 
     //연습했음
     @PostMapping(value ="/file", consumes={ MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })

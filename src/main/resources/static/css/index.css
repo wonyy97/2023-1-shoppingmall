@@ -1,0 +1,6 @@
+* { margin: 0; padding: 0; list-style: none; box-sizing: border-box; }
+.pointer { cursor: pointer; }
+.container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+.container > .item {  width: 100%; background-color: #fff; border: 1px solid #f0f0f0; padding: 20px; }
+.container > .item .main-pic { padding-top: 70%; background-size: cover; background-repeat: no-repeat; }
+.container > .item .info { margin: 20px 0; }

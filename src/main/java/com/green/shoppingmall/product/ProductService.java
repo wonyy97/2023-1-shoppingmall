@@ -3,6 +3,7 @@ package com.green.shoppingmall.product;
 import com.green.shoppingmall.product.model.ProductEntity;
 import com.green.shoppingmall.product.model.ProductInsDto;
 import com.green.shoppingmall.product.model.ProductPicEntity;
+import com.green.shoppingmall.product.model.ProductVo;
 import com.green.shoppingmall.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,10 @@ public class ProductService {
         }
 
         return Long.valueOf(mapper.insProductPic(picList));
+    }
+
+    List<ProductVo> selProduct() {
+        return mapper.selProduct();
     }
 
 //        ProductPicEntity entity = new ProductPicEntity();
