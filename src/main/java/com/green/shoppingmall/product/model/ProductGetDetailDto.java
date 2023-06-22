@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProductSelDetailDto {
+public class ProductGetDetailDto {
     private Long iproduct;
 }

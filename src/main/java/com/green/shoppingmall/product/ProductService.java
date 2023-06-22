@@ -100,8 +100,8 @@ public class ProductService {
         return mapper.selProduct();
     }
 
-    public ProductDetailResponse selByIdProduct(ProductSelDetailDto dto) {
-        ProductVo data = mapper.selProductById(dto);
+    public ProductDetailResponse selProductDetail(ProductGetDetailDto dto) {
+        ProductDetailVo data = mapper.selProductById(dto);
         List<String> pics = mapper.selProductPics(dto);
 
         return ProductDetailResponse.builder()

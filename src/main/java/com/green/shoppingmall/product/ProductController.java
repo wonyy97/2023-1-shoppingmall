@@ -35,10 +35,8 @@ public class ProductController {
     }
 
     @GetMapping("/{iproduct}")
-    public ProductDetailResponse selByIdProduct(@PathVariable Long iproduct) {
-        ProductSelDetailDto dto = new ProductSelDetailDto(1L);
-        dto.setIproduct(iproduct);
-        return service.selByIdProduct(dto);
+    public ProductDetailResponse getProductDetail(@PathVariable Long iproduct) {
+        return service.selProductDetail(new ProductGetDetailDto(iproduct));
     }
 
 

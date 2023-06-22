@@ -29,7 +29,7 @@
     </select>
 
     <select id="selProductById">
-        SELECT iproduct, price, ctnt, nm, main_pic mainPic, brand
+        SELECT iproduct, price, nm, main_pic mainPic, brand, ctnt
         FROM t_product
         WHERE iproduct = #{iproduct}
     </select>

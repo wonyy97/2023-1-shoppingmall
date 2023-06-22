@@ -10,6 +10,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class ProductDetailResponse {
-    private ProductVo data;
+    private ProductDetailVo data;
     private List<String> pics;
 }
