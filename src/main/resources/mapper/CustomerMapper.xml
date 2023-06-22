@@ -11,6 +11,12 @@
         , ph = #{ph}
     </insert>
 
+    <select id="selCustomer">
+        SELECT icustomer, nm, ph
+        FROM t_customer
+        ORDER BY icustomer
+    </select>
+
 
 
 

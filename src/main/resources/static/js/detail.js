@@ -4,12 +4,16 @@
     const urlSearch = new URLSearchParams(location.search);
     const iproduct = urlSearch.get('iproduct');
 
+    async function getCustomerList() {
+        return await fetch(`/customer`)
+            .then(res => res.json());
+    }
 
     fetch(`/product/${iproduct}`)
         .then(res => res.json())
         .then(data => makeDisplay(data));
 
-    const makeDisplay = item => {
+    const makeDisplay= async (item) => {
         $title.textContent = item.data.nm;
 
         const picDivList = item.pics.map(subItem => {
@@ -38,14 +42,64 @@
             <h3>${item.data.nm} (${item.data.brand})</h3>
             <p>${item.data.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</p>
             <div>${item.data.ctnt}</div>
+            <div>
+                <form id="buy_frm">
+                    <input type="hidden" name="iproduct" value="${item.data.iproduct}">
+                    <label for="icustomer">구매자</label>
+                    <select name="icustomer" id="icustomer">                    
+                    </select>
+                    <label for="quantity">수량</label><input type="number" id="quantity" name="quantity">
+                    <button name="btn_buy">구매</button>
+                </form>                
+            </div>
         `;
 
         const swiperWrapper = div.querySelector('.swiper-wrapper');
         picDivList.forEach(subItem => {
-            swiperWrapper.append(subItem);
+            swiperWrapper.appendChild(subItem);
         });
 
+        const customerList = await fetch(`/customer`)
+            .then(res => res.json());
 
+        //customer list
+        const options = customerList.map(item => {
+            const opt = document.createElement('option');
+            opt.value = item.icustomer;
+            opt.textContent = `${item.nm} - ${item.ph}`;
+            return opt;
+        });
+
+        const selectCustomer = div.querySelector('#icustomer');
+        options.forEach(subItem => {
+            selectCustomer.appendChild(subItem);
+        });
+
+        const buyFrm = div.querySelector('#buy_frm');
+        buyFrm.addEventListener('submit', e => {
+            e.preventDefault();
+        });
+        buyFrm.btn_buy.addEventListener('click', e => {
+            const param = {
+                'iproduct': buyFrm.iproduct.value,
+                'icustomer': buyFrm.icustomer.value,
+                'quantity': buyFrm.quantity.value
+            }
+
+            console.log(param);
+
+            fetch('/buy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(param)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        });
 
         const swiper = new Swiper('.swiper', {
             // Optional parameters

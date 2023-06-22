@@ -15,7 +15,7 @@
             })
             .catch(e => {
                 console.log(e);
-            })
+            });
     }
     function makeList(data) {
         $container.innerHTML = null;
@@ -34,10 +34,8 @@
         div.addEventListener('click', e => {
             console.log(`pk : ${item.iproduct}`);
             location.href = `/detail.html?iproduct=${item.iproduct}`;
-        })
+        });
         return div;
     }
     getList();
-
-
 })();

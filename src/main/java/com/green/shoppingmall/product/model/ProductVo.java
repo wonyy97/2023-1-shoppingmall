@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProductVo {
     private Long iproduct;
     private Integer price;
-    private String ctnt;
     private String nm;
     private String mainPic;
     private String brand;
