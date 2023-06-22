@@ -31,6 +31,10 @@
             <div class="main-pic" style="background-image:url('/imgs/product/${item.iproduct}/${item.mainPic}')"></div>
             <div class="info">${item.nm}</div>
           `;
+        div.addEventListener('click', e => {
+            console.log(`pk : ${item.iproduct}`);
+            location.href = `/detail.html?iproduct=${item.iproduct}`;
+        })
         return div;
     }
     getList();

@@ -1,13 +1,11 @@
 package com.green.shoppingmall.product.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @AllArgsConstructor
-public class ProductVo {
+public class ProductDetailVo {
     private Long iproduct;
     private Integer price;
     private String ctnt;
