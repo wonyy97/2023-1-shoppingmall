@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerMapper mapper;
 
@@ -22,6 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
         return mapper.insCustomer(dto);
     }
 
+    @Override
     public List<CustomerGetVo> selCustomer() {
         return mapper.selCustomer();
     }

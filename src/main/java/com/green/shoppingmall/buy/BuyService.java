@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 public class BuyService {
     private final BuyMapper mapper;
 
-    public int insBuy(BuyInsDto dto) {
-        return mapper.insBuy(dto);
+    public Long insBuy(BuyInsDto dto) {
+        int result = mapper.insBuy(dto);
+        return Long.valueOf(result);
     }
 
 }
