@@ -22,7 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
         return mapper.insCustomer(dto);
     }
 
-    @Override
     public List<CustomerGetVo> selCustomer() {
         return mapper.selCustomer();
     }

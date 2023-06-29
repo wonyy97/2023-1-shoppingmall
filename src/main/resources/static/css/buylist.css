@@ -1,0 +1,5 @@
+table { border: 1px solid #ccc; border-collapse: collapse; }
+td, th { border: 1px solid #ccc; padding: 10px; }
+tr > td:first-of-type { text-align: center; }
+td > img { width: 200px; }
+

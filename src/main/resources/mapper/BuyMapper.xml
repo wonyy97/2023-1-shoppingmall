@@ -12,4 +12,18 @@
         , buy_at = current_timestamp()
     </insert>
 
+    <select id="selBuy">
+        SELECT A.ibuy, A.iproduct, A.icustomer, A.quantity, A.buy_at buyAt
+        , B.nm productNm, B.price productPrice, B.main_pic productMainPic
+        , C.nm customerNm
+        FROM t_buy A
+        INNER JOIN t_product B
+        ON A.iproduct = B.iproduct
+        INNER JOIN t_customer C
+        ON A.icustomer = C.icustomer
+        WHERE A.icustomer = #{icustomer}
+        ORDER BY ibuy DESC
+    </select>
+
 </mapper>
+
