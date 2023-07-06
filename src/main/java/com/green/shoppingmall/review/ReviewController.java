@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController
 @RequestMapping("/review")
+@RestController
 @RequiredArgsConstructor
 public class ReviewController {
+
     private final ReviewService service;
 
     @PostMapping
     public ResponseEntity<Integer> postReview(ReviewInsDto dto) {
         log.info("[(post) /review] dto: {}", dto);
-        return ResponseEntity.ok(1);
+        return ResponseEntity.ok(service.insReview(dto));
     }
 }

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.shoppingmall.buy.BuyMapper">
-
     <insert id="insBuy">
         INSERT INTO t_buy
         SET iproduct = #{iproduct}
@@ -13,8 +10,10 @@
     </insert>
 
     <select id="selBuy">
-        SELECT A.ibuy, A.iproduct, A.icustomer, A.quantity, A.buy_at buyAt
-        , B.nm productNm, B.price productPrice, B.main_pic productMainPic
+        SELECT A.ibuy, A.iproduct, A.icustomer
+        , A.quantity, A.buy_at buyAt
+        , B.nm productNm, B.price productPrice
+        , B.main_pic productMainPic
         , C.nm customerNm
         FROM t_buy A
         INNER JOIN t_product B
@@ -24,6 +23,4 @@
         WHERE A.icustomer = #{icustomer}
         ORDER BY ibuy DESC
     </select>
-
 </mapper>
-

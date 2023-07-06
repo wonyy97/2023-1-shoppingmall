@@ -1,3 +1,4 @@
+# db config
 spring:
   servlet:
     multipart:
@@ -9,14 +10,15 @@ spring:
     username: root
     password: green502
 
+# mybatis config
 mybatis:
-  type-aliases-package: com.green.boardver3
+  type-aliases-package: com.green.shoppingmall
   mapper-locations: mapper/**/*.xml
 
-# swgger
+# swagger
 springdoc:
   swagger-ui:
     path: /swagger.html
 
 file:
-  dir: D:/download/shoppingmall
+  dir: /download/shoppingmall
