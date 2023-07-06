@@ -123,4 +123,40 @@
             },
         });
     }
+
+    const $review = document.querySelector('#review');
+
+    let reviewPage = 1;
+    const getReviewList = () => {
+        fetch('/review')
+            .then(res => res.json())
+            .then(makeReviewDisplay);
+    }
+
+    const makeReviewDisplay = res => {
+        res.forEach(item => {
+            const div = makeReviewRow(item);
+            $review.appendChild(div);
+        });
+    }
+
+    const makeReviewRow = item => {
+        const picDivList = item.pics.map(pic => {
+            const picDiv = document.createElement('div');
+            picDiv.innerHTML = `<div><img src=""></div>`;
+            return pciDiv;
+        });
+
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <div>${item.buyerNm}</div>
+            <div>${item.star} ${item.createdAt}</div>
+            <div>${item.productNm}</div>
+            <div class="review-pics"></div>
+            <div>
+                
+            </div>
+        `;
+        return div;
+    }
 })();

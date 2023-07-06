@@ -1,8 +1,6 @@
 package com.green.shoppingmall.review;
 
-import com.green.shoppingmall.review.model.ReviewEntity;
-import com.green.shoppingmall.review.model.ReviewInsDto;
-import com.green.shoppingmall.review.model.ReviewPicInsDto;
+import com.green.shoppingmall.review.model.*;
 import com.green.shoppingmall.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,5 +53,9 @@ public class ReviewService {
         }
         int reviewPicResult = mapper.insReviewPics(picDto);
         return 1;
+    }
+
+    public List<ReviewVo> selReview(ReviewSelDto dto) {
+        return mapper.selReview(dto);
     }
 }

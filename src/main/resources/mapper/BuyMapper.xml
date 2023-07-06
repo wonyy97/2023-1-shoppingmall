@@ -23,4 +23,5 @@
         WHERE A.icustomer = #{icustomer}
         ORDER BY ibuy DESC
     </select>
+
 </mapper>
