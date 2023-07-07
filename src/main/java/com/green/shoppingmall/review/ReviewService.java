@@ -51,11 +51,37 @@ public class ReviewService {
                 e.printStackTrace();
             }
         }
-        int reviewPicResult = mapper.insReviewPics(picDto);
-        return 1;
+        return mapper.insReviewPics(picDto);
     }
 
-    public List<ReviewVo> selReview(ReviewSelDto dto) {
-        return mapper.selReview(dto);
+    public int insReviewPic(Long ireview, List<MultipartFile> paramPics) {
+        String dicPath = String.format("%s/review/%d", FILE_DIR, ireview);
+        File dicFile = new File(dicPath);
+        if(!dicFile.exists()) {
+            dicFile.mkdirs();
+        }
+        ReviewPicInsDto picDto = new ReviewPicInsDto();
+        picDto.setIreview(ireview);
+
+        List<String> pics = new ArrayList<>();
+        picDto.setPics(pics);
+
+        for(MultipartFile file : paramPics) {
+            String saveFileNm = FileUtils.makeRandomFileNm(file.getOriginalFilename());
+            String savePath = String.format("%s/%s", FileUtils.getAbsolutePath(dicPath), saveFileNm);
+
+            File saveFile = new File(savePath);
+            try {
+                file.transferTo(saveFile);
+                pics.add(saveFileNm);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return mapper.insReviewPics(picDto);
+    }
+
+    public List<ReviewVo> selReview(Long iproduct) {
+        return mapper.selReview(iproduct);
     }
 }

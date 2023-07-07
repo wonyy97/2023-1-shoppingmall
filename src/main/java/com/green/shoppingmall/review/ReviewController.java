@@ -1,12 +1,12 @@
 package com.green.shoppingmall.review;
 
 import com.green.shoppingmall.review.model.ReviewInsDto;
-import com.green.shoppingmall.review.model.ReviewSelDto;
 import com.green.shoppingmall.review.model.ReviewVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,10 +24,14 @@ public class ReviewController {
         return ResponseEntity.ok(service.insReview(dto));
     }
 
+    @PostMapping("/pic/{ireview}")
+    public ResponseEntity<Integer> postReviewPic(@RequestPart List<MultipartFile> pics
+            , @PathVariable Long ireview) {
+        return ResponseEntity.ok(service.insReviewPic(ireview, pics));
+    }
+
     @GetMapping
     public ResponseEntity<List<ReviewVo>> getReview(@RequestParam Long iproduct) {
-        ReviewSelDto dto = new ReviewSelDto();
-        dto.setIproduct(iproduct);
-        return ResponseEntity.ok(service.selReview(dto));
+        return ResponseEntity.ok(service.selReview(iproduct));
     }
 }

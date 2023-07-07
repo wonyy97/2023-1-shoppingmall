@@ -128,10 +128,11 @@
 
     let reviewPage = 1;
     const getReviewList = () => {
-        fetch('/review')
+        fetch(`/review?iproduct=${iproduct}`)
             .then(res => res.json())
-            .then(makeReviewDisplay);
+            .then(res => makeReviewDisplay(res));
     }
+    getReviewList();
 
     const makeReviewDisplay = res => {
         res.forEach(item => {
@@ -140,23 +141,29 @@
         });
     }
 
-    const makeReviewRow = item => {
-        const picDivList = item.pics.map(pic => {
-            const picDiv = document.createElement('div');
-            picDiv.innerHTML = `<div><img src=""></div>`;
-            return pciDiv;
-        });
+    const getStar = cnt => {
+        let star = '';
+        for(let i=0; i<cnt; i++) {
+            star += '⭐'
+        }
+        return star;
+    }
 
+    const makeReviewRow = item => {
         const div = document.createElement('div');
         div.innerHTML = `
             <div>${item.buyerNm}</div>
-            <div>${item.star} ${item.createdAt}</div>
+            <div>${getStar(item.star)} ${item.createdAt}</div>
             <div>${item.productNm}</div>
             <div class="review-pics"></div>
-            <div>
-                
-            </div>
+            <div>${item.ctnt}</div>
         `;
+        const $reviewPics = div.querySelector('.review-pics');
+        item.pics.forEach(pic => {
+            const picDiv = document.createElement('div');
+            picDiv.style.backgroundImage = `url('/imgs/review/${item.ireview}/${pic}')`;
+            $reviewPics.appendChild(picDiv)
+        });
         return div;
     }
 })();
